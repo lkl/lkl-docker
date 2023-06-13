@@ -65,13 +65,13 @@ do_steps: &do_steps
              docker login -u "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
              if [[ $CIRCLE_NODE_INDEX == 0 ]]; then
                 docker push lkldocker/circleci:$GIT_TAG
-                docker push lkldocker/circleci-freebsd11-x86_64:$GIT_TAG
-             fi
-             if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
                 docker push lkldocker/circleci-x86_64:$GIT_TAG
-                docker push lkldocker/circleci-qemu-x86_64:$GIT_TAG
+                docker push lkldocker/circleci-freebsd11-x86_64:$GIT_TAG
                 docker push lkldocker/circleci-i386:$GIT_TAG
                 docker push lkldocker/circleci-mingw:$GIT_TAG
+             fi
+             if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
+                docker push lkldocker/circleci-qemu-x86_64:$GIT_TAG
                 docker push lkldocker/circleci-android:$GIT_TAG
                 docker push lkldocker/circleci-android-arm32:$GIT_TAG
                 docker push lkldocker/circleci-android-arm64:$GIT_TAG
