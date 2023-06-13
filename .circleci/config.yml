@@ -17,19 +17,19 @@ do_steps: &do_steps
   - run:
       name: x86_64 image build
       command: |
-        if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
+        if [[ $CIRCLE_NODE_INDEX == 0 ]]; then
           cd circleci/x86_64 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-x86_64:$GIT_TAG . && cd ../..
         fi
   - run:
       name: i386 image build
       command: |
-        if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
+        if [[ $CIRCLE_NODE_INDEX == 0 ]]; then
           cd circleci/i386 && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-i386:$GIT_TAG . && cd ../..
         fi
   - run:
       name: mingw image build
       command: |
-        if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
+        if [[ $CIRCLE_NODE_INDEX == 0 ]]; then
           cd circleci/mingw && docker build --build-arg IMAGE_NAME=lkldocker/circleci:$GIT_TAG -t lkldocker/circleci-mingw:$GIT_TAG . && cd ../..
         fi
   - run:
