@@ -41,14 +41,24 @@ do_steps: &do_steps
   - run:
       name: android arm32 image build
       command: |
+        ## XXX: v1.3 image is the last one which contains the right emulator.
+        ## if we install emulator via sdkmanager, it'll install version 35.3.11.x which isn't able to
+        ## run arm64 image on x86_64 host.
+        ## thus, we stick our old image which has a proper emulator version.
+        ## super dirty, but we may need to overhaul all infrastructure for android build/test.
         if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
-          cd circleci/android/arm32 && docker build --build-arg IMAGE_NAME=lkldocker/circleci-android:$GIT_TAG -t lkldocker/circleci-android-arm32:$GIT_TAG . && cd ../../..
+          cd circleci/android/arm32 && docker build --build-arg IMAGE_NAME=lkldocker/circleci-android:v1.3 -t lkldocker/circleci-android-arm32:$GIT_TAG . && cd ../../..
         fi
   - run:
       name: android arm64 image build
       command: |
+        ## XXX: v1.3 image is the last one which contains the right emulator.
+        ## if we install emulator via sdkmanager, it'll install version 35.3.11.x which isn't able to
+        ## run arm64 image on x86_64 host.
+        ## thus, we stick our old image which has a proper emulator version.
+        ## super dirty, but we may need to overhaul all infrastructure for android build/test.
         if [[ $CIRCLE_NODE_INDEX == 1 ]]; then
-          cd circleci/android/arm64 && docker build --build-arg IMAGE_NAME=lkldocker/circleci-android:$GIT_TAG -t lkldocker/circleci-android-arm64:$GIT_TAG . && cd ../../..
+          cd circleci/android/arm64 && docker build --build-arg IMAGE_NAME=lkldocker/circleci-android:v1.3 -t lkldocker/circleci-android-arm64:$GIT_TAG . && cd ../../..
         fi
   - run:
       name: qemu x86_64 image build
