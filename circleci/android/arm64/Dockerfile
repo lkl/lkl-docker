@@ -4,7 +4,7 @@ FROM $IMAGE_NAME
 LABEL authors="Hajime Tazaki <thehajime@gmail.com>, Octavian Purdila <tavi@cs.pub.ro>"
 
 # install toolchain from NDK
-RUN ./android-ndk-r15b/build/tools/make_standalone_toolchain.py --arch arm64 --api 23 --install-dir ./aarch64-linux-android && \
+RUN ./android-ndk-r15b/build/tools/make_standalone_toolchain.py --arch arm64 --api 24 --install-dir ./aarch64-linux-android && \
     rm -rf android-ndk-r15b
 
 # update toolchain, see https://github.com/lkl/linux/issues/348#issuecomment-312409409
